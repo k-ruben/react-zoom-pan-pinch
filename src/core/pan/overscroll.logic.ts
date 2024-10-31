@@ -7,28 +7,32 @@ import {
 
 // determine if preventDefault and stopPropagation should be called
 // This is depending on if the bounds of the image are reached and in which direction the user wants to scroll
-export function handleOverscrollBehaviour(contextInstance: ReactZoomPanPinchContext, event: TouchEvent): void {
+export function handleOverscrollBehaviour(
+  contextInstance: ReactZoomPanPinchContext,
+  event: TouchEvent,
+): void {
   if (
-    !isOverscrollBehaviourAllowed(contextInstance)
-    || !contextInstance.bounds
-    || contextInstance.startCoords === null
-    || !contextInstance.wrapperComponent
+    !isOverscrollBehaviourAllowed(contextInstance) ||
+    !contextInstance.bounds ||
+    contextInstance.startCoords === null ||
+    !contextInstance.wrapperComponent
   ) {
     event.preventDefault();
     event.stopPropagation();
     return;
   }
 
-  const { positionY/*, positionX, previousPositionX, previousPositionY*/ } = getContext(contextInstance).state;
+  const { positionY /* , positionX, previousPositionX, previousPositionY */ } =
+    getContext(contextInstance).state;
 
   // TODO: Do I need to use min/max-X/Y bounds here? The values seem to be wrong?
-  const clientHeight = contextInstance.wrapperComponent.clientHeight;
+  const { clientHeight } = contextInstance.wrapperComponent;
   // const clientWidth = contextInstance.wrapperComponent.clientWidth;
 
-  const scrollHeight = contextInstance.wrapperComponent.scrollHeight;
+  const { scrollHeight } = contextInstance.wrapperComponent;
   // const scrollWidth = contextInstance.wrapperComponent.scrollWidth;
 
-  const { /*x: startX, */y: startY } = contextInstance.startCoords;
+  const { /* x: startX, */ y: startY } = contextInstance.startCoords;
 
   // const touchDeltaX = event.touches[0].clientX - positionX - startX;
   const touchDeltaY = event.touches[0].clientY - positionY - startY;
@@ -53,7 +57,8 @@ export function handleOverscrollBehaviour(contextInstance: ReactZoomPanPinchCont
   const yRounded = Math.round(positionY * -1);
   // const xRounded = Math.round(positionX * -1);
 
-  const isOverscrollYAxisAllowed = isOverscrollBehaviourAllowedYAxis(contextInstance);
+  const isOverscrollYAxisAllowed =
+    isOverscrollBehaviourAllowedYAxis(contextInstance);
   // const isOverscrollXAxisAllowed = isOverscrollBehaviourAllowedXAxis(contextInstance);
 
   // console.log({ Y: isOverscrollYAxisAllowed, X: isOverscrollXAxisAllowed });

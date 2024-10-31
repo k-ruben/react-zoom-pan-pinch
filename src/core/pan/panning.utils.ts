@@ -53,7 +53,7 @@ export const isPanningAllowed = (
 
 export const isOverscrollBehaviourAllowed = (
   contextInstance: ReactZoomPanPinchContext,
-  ): boolean => {
+): boolean => {
   const { panning, disablePadding } = contextInstance.props;
 
   // Overscroll Behaviour can only work if padding is disabled
@@ -61,40 +61,61 @@ export const isOverscrollBehaviourAllowed = (
     return false;
   }
 
-  return ['both-axis', 'x-axis', 'y-axis'].includes(panning.allowOverscrollBehaviour ?? 'none');
-}
+  return ["both-axis", "x-axis", "y-axis"].includes(
+    panning.allowOverscrollBehaviour ?? "none",
+  );
+};
 
-export const isOverscrollBehaviourAllowedXAxis = (contextInstance: ReactZoomPanPinchContext): boolean => {
+export const isOverscrollBehaviourAllowedXAxis = (
+  contextInstance: ReactZoomPanPinchContext,
+): boolean => {
   const { panning } = contextInstance.props;
 
   if (!panning) {
     return false;
   }
 
-  return ['both-axis', 'x-axis'].includes(panning.allowOverscrollBehaviour ?? 'none');
-}
+  return ["both-axis", "x-axis"].includes(
+    panning.allowOverscrollBehaviour ?? "none",
+  );
+};
 
-export const isOverscrollBehaviourAllowedYAxis = (contextInstance: ReactZoomPanPinchContext): boolean => {
+export const isOverscrollBehaviourAllowedYAxis = (
+  contextInstance: ReactZoomPanPinchContext,
+): boolean => {
   const { panning } = contextInstance.props;
 
   if (!panning) {
     return false;
   }
 
-  return ['both-axis', 'y-axis'].includes(panning.allowOverscrollBehaviour ?? 'none');
-}
+  return ["both-axis", "y-axis"].includes(
+    panning.allowOverscrollBehaviour ?? "none",
+  );
+};
 
-export const calculateDirection = ({ x, y, prevX, prevY}: { x: number, y: number, prevX: number, prevY: number}) => {
+export const calculateDirection = ({
+  x,
+  y,
+  prevX,
+  prevY,
+}: {
+  x: number;
+  y: number;
+  prevX: number;
+  prevY: number;
+}) => {
   const componentDeltaX = x - prevX;
   const componentDeltaY = y - prevY;
 
   if (Math.abs(componentDeltaX) > Math.abs(componentDeltaY)) {
-    return componentDeltaX > 0 ? 'right' : 'left';
-  } else if (Math.abs(componentDeltaY) > Math.abs(componentDeltaX)) {
-    return componentDeltaY > 0 ? 'down' : 'up';
+    return componentDeltaX > 0 ? "right" : "left";
   }
-  return 'none';
-}
+  if (Math.abs(componentDeltaY) > Math.abs(componentDeltaX)) {
+    return componentDeltaY > 0 ? "down" : "up";
+  }
+  return "none";
+};
 
 export const handlePanningSetup = (
   contextInstance: ReactZoomPanPinchContext,

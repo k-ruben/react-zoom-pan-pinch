@@ -486,7 +486,11 @@ export class ZoomPanPinch {
   ): void => {
     const { onTransformed } = this.props;
 
-    if (Number.isNaN(scale) || Number.isNaN(positionX) || Number.isNaN(positionY)) {
+    if (
+      Number.isNaN(scale) ||
+      Number.isNaN(positionX) ||
+      Number.isNaN(positionY)
+    ) {
       console.error("Detected NaN set state values");
       return;
     }

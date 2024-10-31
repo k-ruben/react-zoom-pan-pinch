@@ -8,20 +8,20 @@ import { normalizeArgs, Controls } from "../../utils";
 import exampleImg from "../../assets/cruise.webp";
 
 export const Template = (args) => (
-    <div style={{ maxWidth: '100%'}}>
-        <div style={{ height: '200px', backgroundColor: 'grey'}} />
-        <TransformWrapper
-            {...normalizeArgs(args)}
-            disablePadding={true}
-            wheel={{ wheelDisabled: true, smoothStep: 0.01 }}
-            panning={{ allowOverscrollBehaviour: 'both-axis' }}
-        >
-            <TransformComponent wrapperStyle={{ maxWidth: '100%' }}>
-                    <img src={exampleImg} alt="" width="100%"  height="auto"/>
-            </TransformComponent>
-        </TransformWrapper>
-        <div style={{ height: '600px', backgroundColor: 'grey'}} />
-    </div>
+  <div style={{ maxWidth: "100%" }}>
+    <div style={{ height: "200px", backgroundColor: "grey" }} />
+    <TransformWrapper
+      {...normalizeArgs(args)}
+      disablePadding={true}
+      wheel={{ wheelDisabled: true, smoothStep: 0.01 }}
+      panning={{ allowOverscrollBehaviour: "both-axis" }}
+    >
+      <TransformComponent wrapperStyle={{ maxWidth: "100%" }}>
+        <img src={exampleImg} alt="" width="100%" height="auto" />
+      </TransformComponent>
+    </TransformWrapper>
+    <div style={{ height: "600px", backgroundColor: "grey" }} />
+  </div>
 );
 
 <Meta

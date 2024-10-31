@@ -38,7 +38,7 @@ export function handleCalculateZoomPositions(
     null,
   );
 
-  return { x, y};
+  return { x, y };
 }
 
 export function checkZoomBounds(

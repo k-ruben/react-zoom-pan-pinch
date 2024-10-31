@@ -32,7 +32,13 @@ export function handleZoomToPoint(
   );
 
   // TODO: Maybe wrong to return x and y from previous position
-  return { scale: newScale, positionX: x, positionY: y, previousPositionX: x, previousPositionY: y };
+  return {
+    scale: newScale,
+    positionX: x,
+    positionY: y,
+    previousPositionX: x,
+    previousPositionY: y,
+  };
 }
 
 export function handleAlignToScaleBounds(

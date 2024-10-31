@@ -43,7 +43,7 @@ export const initialSetup: LibrarySetup = {
     allowLeftClickPan: true,
     allowMiddleClickPan: true,
     allowRightClickPan: true,
-    allowOverscrollBehaviour: 'none',
+    allowOverscrollBehaviour: "none",
     wheelPanning: false,
     activationKeys: [],
     excluded: [],
