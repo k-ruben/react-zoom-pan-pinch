@@ -40,7 +40,7 @@ export const TransformComponent: React.FC<Props> = ({
     return () => {
       cleanupWindowEvents?.();
     };
-  }, []);
+  });
 
   return (
     <div

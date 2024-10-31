@@ -182,13 +182,7 @@ export class ZoomPanPinch {
     const { centerOnInit } = this.setup;
 
     const hasTarget = (entries: ResizeObserverEntry[], target: Element) => {
-      for (const entry of entries) {
-        if (entry.target === target) {
-          return true;
-        }
-      }
-
-      return false;
+      return entries.some((entry) => entry.target === target);
     };
 
     this.applyTransformation();
