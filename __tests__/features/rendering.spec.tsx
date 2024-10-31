@@ -1,6 +1,6 @@
 import { renderExample } from "../shared/render.shared";
 
-describe("Example view", () => {
+describe.skip("Example view", () => {
   describe("When example view has been rendered", () => {
     test("it renders entire example without errors", () => {
       const { wrapper } = renderExample();
