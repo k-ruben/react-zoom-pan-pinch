@@ -9,6 +9,8 @@ export const initialState: ReactZoomPanPinchState = {
   scale: 1,
   positionX: 0,
   positionY: 0,
+  previousPositionX: 0,
+  previousPositionY: 0,
 };
 
 export const initialSetup: LibrarySetup = {
@@ -41,6 +43,7 @@ export const initialSetup: LibrarySetup = {
     allowLeftClickPan: true,
     allowMiddleClickPan: true,
     allowRightClickPan: true,
+    allowOverscrollBehaviour: 'none',
     wheelPanning: false,
     activationKeys: [],
     excluded: [],

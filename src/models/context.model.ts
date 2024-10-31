@@ -31,6 +31,8 @@ export type ReactZoomPanPinchState = {
   scale: number;
   positionX: number;
   positionY: number;
+  previousPositionX: number;
+  previousPositionY: number;
 };
 
 export type ReactZoomPanPinchHandlers = {
@@ -87,6 +89,7 @@ export type ReactZoomPanPinchProps = {
     activationKeys?: string[];
     excluded?: string[];
     wheelPanning?: boolean;
+    allowOverscrollBehaviour?: "both-axis" | "none"; // removed "x-axis" and "y-axis" since it is too complicated to implement. The other axis could "unlock" the locked axis and there is no good way to prevent it because we can only wrok klmklsmdf
   };
   pinch?: {
     step?: number;

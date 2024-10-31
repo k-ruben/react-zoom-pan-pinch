@@ -1,0 +1,45 @@
+import { Meta, Story, ArgsTable, Canvas } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+
+import { TransformWrapper, TransformComponent } from "../../../components";
+import { argsTypes } from "../../types/args.types.ts";
+import { normalizeArgs, Controls } from "../../utils";
+
+import exampleImg from "../../assets/cruise.webp";
+
+export const Template = (args) => (
+    <div style={{ maxWidth: '100%'}}>
+        <div style={{ height: '200px', backgroundColor: 'grey'}} />
+        <TransformWrapper
+            {...normalizeArgs(args)}
+            disablePadding={true}
+            wheel={{ wheelDisabled: true, smoothStep: 0.01 }}
+            panning={{ allowOverscrollBehaviour: 'both-axis' }}
+        >
+            <TransformComponent wrapperStyle={{ maxWidth: '100%' }}>
+                    <img src={exampleImg} alt="" width="100%"  height="auto"/>
+            </TransformComponent>
+        </TransformWrapper>
+        <div style={{ height: '600px', backgroundColor: 'grey'}} />
+    </div>
+);
+
+<Meta
+  title="Examples/Overflow Scroll"
+  component={TransformWrapper}
+  argTypes={argsTypes}
+/>
+
+# Big Image
+
+<br />
+
+### Preview:
+
+<Canvas>
+  <Story name="Overflow Scroll">{(args) => <Template {...args} />}</Story>
+</Canvas>
+
+## Component API
+
+<ArgsTable story="Overflow Scroll" />

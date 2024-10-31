@@ -47,6 +47,7 @@ import {
   handleDoubleClick,
   isDoubleClickAllowed,
 } from "./double-click/double-click.logic";
+import { handleOverscrollBehaviour } from "./pan/overscroll.logic";
 
 type StartCoordsType = { x: number; y: number } | null;
 
@@ -424,8 +425,7 @@ export class ZoomPanPinch {
       const isAllowed = isPanningAllowed(this);
       if (!isAllowed) return;
 
-      event.preventDefault();
-      event.stopPropagation();
+      handleOverscrollBehaviour(this, event);
 
       const touch = event.touches[0];
       handlePanning(this, touch.clientX, touch.clientY);
@@ -486,25 +486,26 @@ export class ZoomPanPinch {
   ): void => {
     const { onTransformed } = this.props;
 
-    if (
-      !Number.isNaN(scale) &&
-      !Number.isNaN(positionX) &&
-      !Number.isNaN(positionY)
-    ) {
-      if (scale !== this.transformState.scale) {
-        this.transformState.previousScale = this.transformState.scale;
-        this.transformState.scale = scale;
-      }
-      this.transformState.positionX = positionX;
-      this.transformState.positionY = positionY;
-
-      this.applyTransformation();
-      const ctx = getContext(this);
-      this.onChangeCallbacks.forEach((callback) => callback(ctx));
-      handleCallback(ctx, { scale, positionX, positionY }, onTransformed);
-    } else {
+    if (Number.isNaN(scale) || Number.isNaN(positionX) || Number.isNaN(positionY)) {
       console.error("Detected NaN set state values");
+      return;
     }
+
+    if (scale !== this.transformState.scale) {
+      this.transformState.previousScale = this.transformState.scale;
+      this.transformState.scale = scale;
+    }
+
+    this.transformState.previousPositionX = this.transformState.positionX;
+    this.transformState.previousPositionY = this.transformState.positionY;
+
+    this.transformState.positionX = positionX;
+    this.transformState.positionY = positionY;
+
+    this.applyTransformation();
+    const ctx = getContext(this);
+    this.onChangeCallbacks.forEach((callback) => callback(ctx));
+    handleCallback(ctx, { scale, positionX, positionY }, onTransformed);
   };
 
   setCenter = (): void => {

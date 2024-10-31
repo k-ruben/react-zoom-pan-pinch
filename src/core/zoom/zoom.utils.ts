@@ -28,7 +28,7 @@ export function handleCalculateZoomPositions(
   // do not limit to bounds when there is padding animation,
   // it causes animation strange behaviour
 
-  const newPositions = getMouseBoundedPosition(
+  const { x, y } = getMouseBoundedPosition(
     calculatedPositionX,
     calculatedPositionY,
     bounds,
@@ -38,7 +38,7 @@ export function handleCalculateZoomPositions(
     null,
   );
 
-  return newPositions;
+  return { x, y};
 }
 
 export function checkZoomBounds(

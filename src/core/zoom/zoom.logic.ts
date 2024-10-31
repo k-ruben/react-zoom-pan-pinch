@@ -31,7 +31,8 @@ export function handleZoomToPoint(
     limitToBounds,
   );
 
-  return { scale: newScale, positionX: x, positionY: y };
+  // TODO: Maybe wrong to return x and y from previous position
+  return { scale: newScale, positionX: x, positionY: y, previousPositionX: x, previousPositionY: y };
 }
 
 export function handleAlignToScaleBounds(
